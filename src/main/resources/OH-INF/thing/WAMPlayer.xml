@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="samsungmultiroom"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Sample Thing Type -->
+	<thing-type id="WAMPlayer">
+
+		<label>SamsungMultiroom WAM player</label>
+		<description>A Samsung WAMXXX player. </description>
+
+		<channels>
+			<channel id="name" typeId="name"/>
+			<channel id="service" typeId="service"/>
+			<channel id="playpreset" typeId="playpreset"/>
+
+
+			<!-- channels copied from HEOS binding -->
+			<channel id="control" typeId="system.media-control"/>
+			<channel id="volume" typeId="system.volume"/>
+			<channel id="mute" typeId="system.mute"/>
+			<channel id="inputs" typeId="input"/>
+			<!-- TOBE
+				<channel id="currentPosition" typeId="currentPosition"/>
+				<channel id="duration" typeId="duration"/> -->
+
+			<!-- channels copied from sonos binding -->
+			<channel id="zonename" typeId="zonename"/>
+			<channel id="zonegroupid" typeId="zonegroupid"/>
+			<channel id="currentalbum" typeId="currentalbum"/>
+			<channel id="currentalbumart" typeId="currentalbumart"/>
+			<channel id="currentalbumarturl" typeId="currentalbumarturl"/>
+			<channel id="currentartist" typeId="system.media-artist"/>
+			<channel id="currenttitle" typeId="system.media-title"/>
+			<channel id="playuri" typeId="playuri"/>
+			<channel id="state" typeId="state"/>
+
+
+		</channels>
+
+		<properties>
+			<property name="vendor">Samsung</property>
+		</properties>
+		<representation-property>serialNumber</representation-property>
+		<config-description>
+			<parameter name="hostname" type="text" required="true">
+				<context>network-address</context>
+				<label>Hostname</label>
+				<description>Hostname or IP address of the device</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<!-- SamsungMultiroom channels -->
+	<channel-type id="name">
+		<item-type>String</item-type>
+		<label>Name</label>
+		<description>Name of the device</description>
+		<state readOnly="true"/>
+	</channel-type>
+
+	<channel-type id="service">
+		<item-type>String</item-type>
+		<label>Service</label>
+		<description>Audio service playing</description>
+	</channel-type>
+
+	<channel-type id="playpreset" advanced="true">
+		<item-type>Number</item-type>
+		<label>Play preset radio</label>
+		<description>Play preset radio station preconfigured on speaker. Input is a number e.g. 2 for the second favorite
+			radio</description>
+		<state readOnly="false"/>
+	</channel-type>
+
+	<channel-type id="input" advanced="true">
+		<item-type>String</item-type>
+		<label>External Inputs</label>
+	</channel-type>
+	<channel-type id="currentPosition" advanced="true">
+		<item-type>Number:Time</item-type>
+		<label>Track Position</label>
+		<description>The current track position</description>
+		<category>Time</category>
+		<state readOnly="true" pattern="%d %unit%"/>
+	</channel-type>
+	<channel-type id="duration" advanced="true">
+		<item-type>Number:Time</item-type>
+		<label>Track Duration</label>
+		<description>The overall duration of the track</description>
+		<category>Time</category>
+		<state readOnly="true" pattern="%d %unit%"/>
+	</channel-type>
+
+	<channel-type id="zonename">
+		<item-type>String</item-type>
+		<label>Zone Name</label>
+		<description>Name of the Zone Group associated to the Zone Player</description>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="zonegroupid" advanced="true">
+		<item-type>String</item-type>
+		<label>Zone Group ID</label>
+		<description>Id of the Zone Group the Zone Player belongs to</description>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="currentalbum">
+		<item-type>String</item-type>
+		<label>Current Album</label>
+		<description>Name of the album currently playing</description>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="currentalbumart">
+		<item-type>Image</item-type>
+		<label>Current Album Cover Art</label>
+		<description>Cover art of the album currently playing</description>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="currentalbumarturl" advanced="true">
+		<item-type>String</item-type>
+		<label>Current Album Cover Art URL</label>
+		<description>Cover art URL of the album currently playing</description>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="currenttrack" advanced="true">
+		<item-type>String</item-type>
+		<label>Current Track</label>
+		<description>Name of the current track or radio station currently playing</description>
+		<state readOnly="true"/>
+	</channel-type>
+	<channel-type id="playuri" advanced="true">
+		<item-type>String</item-type>
+		<label>Play URI</label>
+		<description>Play the given URI</description>
+		<state readOnly="false"/>
+	</channel-type>
+	<channel-type id="state" advanced="true">
+		<item-type>String</item-type>
+		<label>State</label>
+		<description>The State channel contains state of the Zone Player, e.g. PLAYING, STOPPED,...</description>
+	</channel-type>
+
+
+</thing:thing-descriptions>
